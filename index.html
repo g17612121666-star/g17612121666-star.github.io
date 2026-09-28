@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Science Month 工作组岗位报名</title>
+  <style>
+    :root { --bg:#f3f6f2; --paper:#fffcf7; --ink:#1c2a22; --muted:#5b6b62; --line:#d7e0d6; --accent:#2f6f4e; --danger:#b42318; --shadow:0 18px 50px rgba(28,42,34,.08); }
+    * { box-sizing:border-box; } html,body{margin:0;padding:0;}
+    body{font-family:"PingFang SC","Microsoft YaHei",sans-serif;color:var(--ink);background:radial-gradient(900px 420px at 8% -10%,#e7f0e4 0%,transparent 55%),radial-gradient(700px 380px at 100% 0%,#efe6cc 0%,transparent 50%),var(--bg);min-height:100vh;}
+    .wrap{width:min(760px,calc(100% - 32px));margin:32px auto 56px;}
+    .kicker{letter-spacing:.18em;font-size:12px;color:var(--accent);font-weight:700;}
+    h1{font-size:clamp(26px,5vw,36px);line-height:1.2;margin:8px 0 10px;}
+    .lead{color:var(--muted);line-height:1.7;margin:0;}
+    form,.done{background:var(--paper);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow);padding:28px 24px 24px;}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+    label{display:block;font-size:14px;font-weight:700;margin-bottom:8px;}
+    .req{color:var(--danger);}
+    .hint{font-weight:400;color:var(--muted);font-size:12px;margin-left:6px;}
+    input[type=text],select,textarea{width:100%;border:1px solid #cfd8ce;border-radius:12px;padding:12px 13px;font:inherit;background:#fff;}
+    input:focus,select:focus,textarea:focus{border-color:var(--accent);outline:none;box-shadow:0 0 0 3px rgba(47,111,78,.15);}
+    .field{margin-bottom:18px;}
+    .roles{display:grid;gap:10px;margin:8px 0 22px;}
+    .role{border:1px solid var(--line);border-radius:14px;padding:12px 14px;background:#fbfaf6;}
+    .role b{display:block;margin-bottom:4px;}
+    .role span{color:var(--muted);font-size:13px;line-height:1.55;}
+    button{border:0;border-radius:999px;background:var(--accent);color:#fff;font:inherit;font-weight:700;padding:12px 22px;cursor:pointer;}
+    button[disabled]{opacity:.6;cursor:wait;}
+    .note{color:var(--muted);font-size:13px;}
+    .error{display:none;color:var(--danger);background:#fdecea;border-radius:10px;padding:10px 12px;margin-bottom:14px;}
+    .done{display:none;text-align:center;padding:48px 24px;}
+    footer{margin-top:18px;color:var(--muted);font-size:12px;text-align:center;}
+    @media(max-width:640px){.grid{grid-template-columns:1fr;}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="kicker">SCIENCE MONTH</div>
+      <h1>工作组岗位报名</h1>
+      <p class="lead">填写姓名和班级后选择岗位。第一志愿必填；第二、第三志愿可以留空，也可以只填其中一项。同一岗位请勿重复选择。</p>
+    </header>
+    <section class="roles">
+      <div class="role"><b>Conference 工作组</b><span>10月1日—23日。规划案、议程、报名筛选、会前彩排与场控。</span></div>
+      <div class="role"><b>Journal · 收稿 / 审稿 / 发信</b><span>10月25日—11月25日。收稿、初审、按模板发信，维护进度表。</span></div>
+      <div class="role"><b>Journal · 排版设计</b><span>封面目录与版式统一，按模板排版；可与宣传组交叉。</span></div>
+      <div class="role"><b>宣传组</b><span>活动预告/回顾推文与海报；向采购组提供终版文件与到货时间。</span></div>
+      <div class="role"><b>影像记录组</b><span>放学后需有时间。手机拍摄即可；提交现场照与可用于推文的横图。</span></div>
+      <div class="role"><b>采购组</b><span>贯穿 10 月初至 11 月底。汇总需求、比价下单、验收报销与发票。</span></div>
+    </section>
+    <form id="form" novalidate>
+      <div class="error" id="error"></div>
+      <div class="grid">
+        <div class="field"><label for="name">姓名 <span class="req">*</span></label><input id="name" name="姓名" type="text" required maxlength="30" placeholder="请输入真实姓名" /></div>
+        <div class="field"><label for="klass">班级 <span class="req">*</span></label><input id="klass" name="班级" type="text" required maxlength="40" placeholder="例如：IB DP1 / G10-3" /></div>
+      </div>
+      <div class="field"><label for="choice1">第一志愿 <span class="req">*</span></label><select id="choice1" name="第一志愿" required></select></div>
+      <div class="field"><label for="choice2">第二志愿 <span class="hint">选填</span></label><select id="choice2" name="第二志愿"></select></div>
+      <div class="field"><label for="choice3">第三志愿 <span class="hint">选填</span></label><select id="choice3" name="第三志愿"></select></div>
+      <div class="field"><label for="remark">备注 <span class="hint">选填</span></label><textarea id="remark" name="备注" rows="3" maxlength="300" placeholder="没有可留空"></textarea></div>
+      <button type="submit" id="submit">提交报名</button>
+      <p class="note">第一志愿必填，后两个志愿可以不选。提交后会发到组织者邮箱。</p>
+    </form>
+    <div class="done" id="done"><h2>报名已提交</h2><p class="lead" id="doneText"></p></div>
+    <footer>平河 Science Month · 工作组分岗报名</footer>
+  </div>
+  <script>
+    const ROLES = ["Conference 工作组","Journal · 收稿 / 审稿 / 发信","Journal · 排版设计","宣传组","影像记录组","采购组"];
+    function fillSelect(el, required) {
+      el.innerHTML = "";
+      const blank = document.createElement("option");
+      blank.value = "";
+      blank.textContent = required ? "请选择岗位" : "不选";
+      el.appendChild(blank);
+      ROLES.forEach(role => { const opt = document.createElement("option"); opt.value = role; opt.textContent = role; el.appendChild(opt); });
+    }
+    const choice1 = document.getElementById("choice1");
+    const choice2 = document.getElementById("choice2");
+    const choice3 = document.getElementById("choice3");
+    fillSelect(choice1, true); fillSelect(choice2, false); fillSelect(choice3, false);
+    const form = document.getElementById("form");
+    const errorBox = document.getElementById("error");
+    const submitBtn = document.getElementById("submit");
+    function showError(msg) { errorBox.style.display = "block"; errorBox.textContent = msg; }
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      errorBox.style.display = "none";
+      const name = document.getElementById("name").value.trim();
+      const klass = document.getElementById("klass").value.trim();
+      const c1 = choice1.value, c2 = choice2.value, c3 = choice3.value;
+      const remark = document.getElementById("remark").value.trim();
+      if (!name) return showError("请填写姓名。");
+      if (!klass) return showError("请填写班级。");
+      if (!c1) return showError("请至少选择第一志愿。");
+      const picked = [c1,c2,c3].filter(Boolean);
+      if (new Set(picked).size !== picked.length) return showError("三个志愿里不要重复选择同一个岗位。");
+      submitBtn.disabled = true; submitBtn.textContent = "提交中…";
+      const payload = { "姓名": name, "班级": klass, "第一志愿": c1, "第二志愿": c2 || "未填", "第三志愿": c3 || "未填", "备注": remark || "无", _subject: "Science Month 岗位报名：" + name, _template: "table", _captcha: "false" };
+      try {
+        const res = await fetch("https://formsubmit.co/ajax/g17612121666@gmail.com", { method: "POST", headers: { "Content-Type": "application/json", "Accept": "application/json" }, body: JSON.stringify(payload) });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok || data.success === "false" || data.success === false) throw new Error(data.message || "fail");
+        form.style.display = "none";
+        document.getElementById("done").style.display = "block";
+        document.getElementById("doneText").textContent = name + "（" + klass + "）第一志愿：" + c1 + (c2 ? "；第二志愿：" + c2 : "") + (c3 ? "；第三志愿：" + c3 : "") + "。";
+      } catch (err) {
+        showError("网络提交没有成功。请检查网络后重试。");
+        submitBtn.disabled = false; submitBtn.textContent = "提交报名";
+      }
+    });
+  </script>
+</body>
+</html>
