@@ -1,2 +1,9 @@
-# g17612121666-star.github.io
-Science Month 工作组岗位报名
+# Science Month 岗位报名
+
+在线问卷：https://g17612121666-star.github.io/
+
+- 姓名、班级必填
+- 第一志愿必填；第二、第三志愿可以不选
+- 报名会发到 g17612121666@gmail.com
+
+首次有人提交后，FormSubmit 会给该邮箱发一封确认信。请点开邮件里的链接后，后续报名才会进信箱。
